@@ -1,4 +1,4 @@
-#SHOPPING APP
+# SHOPPING APP
 
 
-Aplikácia, ktorá u?ah?í ?u?om nakupovanie. Používate? bude ma? elektronický košík, ktorý si bude postupne nap??a? produktami ktoré chce kúpi?. Na základe tohoto zoznamu aplikácia vyh?adá obchody, ktoré tieto produkty majú a zoradí ich pod?a ce?kovej ceny nákupu vzostupne.
+Aplikacia, ktorá ulahci ludom nakupovanie. Pouzivatel bude mat elektronicky kosik, ktory si bude postupne naplnat produktami ktore chce kupit. Na zaklade tohoto zoznamu aplikacia vyhlada obchody, ktore tieto produkty maju a zoradi ich podla celkovej ceny nakupu vzostupne.
