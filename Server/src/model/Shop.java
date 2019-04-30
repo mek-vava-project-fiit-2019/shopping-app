@@ -1,3 +1,7 @@
+/**
+ * Created by Marko Ondrejicka
+ */
+
 package model;
 
 import java.math.BigDecimal;

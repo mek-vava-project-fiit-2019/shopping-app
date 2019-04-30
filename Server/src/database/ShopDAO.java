@@ -1,3 +1,7 @@
+/**
+ * Created by Marko Ondrejicka
+ */
+
 package database;
 
 import java.math.BigDecimal;
@@ -22,10 +26,21 @@ private SessionFactory sessionFactory;
 @Autowired
 private CustomerDAO customerDAO;
 	
+	/**
+	 * Set the SessionFactory Bean 
+	 * @param sessionFactory
+	 */
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 	
+	/**
+	 * Find and return shop, which is closest to the requested coordinates, throws exception if no shops are available
+	 * @param userLatitude
+	 * @param userLongitude
+	 * @return shop
+	 * @throws ShopNotFoundException
+	 */
 	@SuppressWarnings("unchecked")
 	public Shop getClosestShop(BigDecimal userLatitude, BigDecimal userLongitude) throws ShopNotFoundException{
 		Session session = this.sessionFactory.openSession();
@@ -33,27 +48,33 @@ private CustomerDAO customerDAO;
 		List<Shop> shopList = session.createQuery("SELECT shop FROM Shop shop",  Shop.class).list();
 		session.close();
 		
-		double minimum = Double.MAX_VALUE;
-		int shop_index = -1;
-		double distance;
-		
-		for(Shop shop : shopList) {
-			distance = Math.sqrt((((shop.getLatitude().subtract(userLatitude)).pow(2)).add((shop.getLongitude().subtract(userLongitude)).pow(2))).doubleValue());
-			System.out.println("Shop id - " + shop.getId() + " ma distance - " + distance);
-			
-			if(distance < minimum) {
-				shop_index = shopList.indexOf(shop);
-				minimum = distance;
-			}
-		}
-		
 		if(shopList.size() > 0) {
+			
+			double minimum = Double.MAX_VALUE;
+			int shop_index = -1;
+			double distance;
+			
+			for(Shop shop : shopList) {
+				distance = Math.sqrt((((shop.getLatitude().subtract(userLatitude)).pow(2)).add((shop.getLongitude().subtract(userLongitude)).pow(2))).doubleValue());
+				System.out.println("Shop id - " + shop.getId() + " ma distance - " + distance);
+				
+				if(distance < minimum) {
+					shop_index = shopList.indexOf(shop);
+					minimum = distance;
+				}
+			}
+			
 			return shopList.get(shop_index);
 		} else {
 			throw new ShopNotFoundException();
 		}
 	}
 	
+	/**
+	 * Return all shops present in the database
+	 * @return shopList
+	 * @throws ShopNotFoundException
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Shop> getAllShops() throws ShopNotFoundException{
 		Session session = this.sessionFactory.openSession();
@@ -68,6 +89,13 @@ private CustomerDAO customerDAO;
 		}
 	}
 	
+	/**
+	 * Find and return sortiment of the shop depending on requeste shop and product, throws exception if sortiment
+	 * @param shop_id
+	 * @param product_id
+	 * @return sortiment
+	 * @throws ShopNotFoundException
+	 */
 	@SuppressWarnings("unchecked")
 	public Sortiment getShopSortiment(int shop_id, int product_id) throws ShopNotFoundException{
 		Session session = this.sessionFactory.openSession();
@@ -82,6 +110,13 @@ private CustomerDAO customerDAO;
 		}
 	}
 	
+	/**
+	 * Find and return shop, which has the most of the products customer want to buy, throws exception if none of the shops satisfies the condition
+	 * @param user_id
+	 * @return filteredShop
+	 * @throws ShopNotFoundException
+	 * @throws CustomerNotFoundException
+	 */
 	@SuppressWarnings("unchecked")
 	public Shop getSuitableShop(int user_id) throws ShopNotFoundException, CustomerNotFoundException{
 		Session session = this.sessionFactory.openSession();
@@ -111,5 +146,4 @@ private CustomerDAO customerDAO;
 			throw new ShopNotFoundException();
 		}
 	}
-	
 }
