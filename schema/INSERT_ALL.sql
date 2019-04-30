@@ -41,6 +41,13 @@ INSERT INTO customer(id, email, name, password) VALUES (3, '333@shop.com', 'Robe
 INSERT INTO customer(id, email, name, password) VALUES (4, '444@shop.com', 'Peter Marcin', '4444444');
 INSERT INTO customer(id, email, name, password) VALUES (5, '555@shop.com', 'Milan Knazko', '5555555');
 
+--Inserting into shops
+INSERT INTO shop(id, latitude, longitude, name) VALUES (1,17.17201600,48.15083700,'Lidl');
+INSERT INTO shop(id, latitude, longitude, name) VALUES (2,17.03420900,48.19282200,'Billa');
+INSERT INTO shop(id, latitude, longitude, name) VALUES (3,17.10768200,48.11642300,'Kaufland');
+INSERT INTO shop(id, latitude, longitude, name) VALUES (4,17.15500900,48.20853200,'Alza');
+INSERT INTO shop(id, latitude, longitude, name) VALUES (5,17.10707000,48.13301500,'Primark');
+
 --Inserting sortiment
 INSERT INTO sortiment(id, amount, price, product_id, shop_id) VALUES (1 ,34,5,1,1);
 INSERT INTO sortiment(id, amount, price, product_id, shop_id) VALUES (2 ,76,5,3,1);
