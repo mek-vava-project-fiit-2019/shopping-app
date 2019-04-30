@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_food"
+        android:icon="@drawable/ic_food"
+        android:title="@string/food"/>
+
+    <item android:id="@+id/nav_clothing"
+        android:icon="@drawable/ic_clothing"
+        android:title="@string/clothing"/>
+
+    <item android:id="@+id/nav_electronics"
+        android:icon="@drawable/ic_electronics"
+        android:title="@string/electronics"/>
+
+</menu>
