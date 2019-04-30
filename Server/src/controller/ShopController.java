@@ -1,3 +1,7 @@
+/**
+ * Created by Erik Podola
+ */
+
 package controller;
 
 import java.io.IOException;
@@ -37,7 +41,14 @@ public class ShopController {
 	
 	private Gson gson = new Gson();
 	private static Logger log = LoggerFactory.getLogger(ProductController.class.getName());
-
+	/**
+	 * Function that finds and returns closest shop based on his coordinates, throws ShopNotFoundException if no shop is found
+	 * @param longitude
+	 * @param latitude
+	 * @param req
+	 * @param res
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/Shop/Closest", method = RequestMethod.GET, produces = "application/json")
 	public void getClossestShopBassedOnCoordinates(@RequestParam BigDecimal longitude,@RequestParam BigDecimal latitude, HttpServletRequest req, HttpServletResponse res)throws IOException {
         log.info("Executing getClossestShopBassedOnCoordinates webservice with parameters - latitude = ",latitude, ", longitude = ", longitude);
@@ -50,17 +61,21 @@ public class ShopController {
 			log.info("Found closest shop with name " + shop.getName());	
 		} catch (ShopNotFoundException e) {
 			res.setStatus(HttpServletResponse.SC_NO_CONTENT);
-			log.error("ShopNotFoundException was thrown, did not found any shop");	
+			log.error("Did not found any shop");	
 
 		}
 		finally {
 			shopJSON = this.gson.toJson(shop);
 			out.print(shopJSON);
-
-
 		}
 	}
 	
+	/**
+	 * Function fins and returns all shops from database, throws ShopNotFoundException if no shop is not found
+	 * @param req
+	 * @param res
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/Shop", method = RequestMethod.GET, produces = "application/json")
 	public void getAllShops(HttpServletRequest req, HttpServletResponse res)throws IOException {
         log.info("Executing getClossestShopBassedOnCoordinates webservice");
@@ -74,7 +89,7 @@ public class ShopController {
 			//TODO add loggers
 		} catch (ShopNotFoundException e) {
 			res.setStatus(HttpServletResponse.SC_NO_CONTENT);
-			log.error("ShoptNotFoundException was thrown, no shop was found");
+			log.error("No shop was found");
 
 		}
 		finally {
@@ -83,7 +98,14 @@ public class ShopController {
 		}
 	}
 	
-	@RequestMapping(value = "/shops/todo", method = RequestMethod.GET, produces = "application/json")
+	/**
+	 * Function that finds and returns shop that contains most of the products which user select, throws ShopNotFoundException if no shop was found or CustomerNotFoundException if customers cart was not found
+	 * @param userId
+	 * @param req
+	 * @param res
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/Shop/Suitable", method = RequestMethod.GET, produces = "application/json")
 	public void getShopWithMostWantedProducts(@RequestParam int userId, HttpServletRequest req, HttpServletResponse res )throws IOException {
         log.info("Executing getShopWithMostWantedProducts webservice with parameters - userId = ", userId);
 		Shop shop = null;
@@ -96,29 +118,39 @@ public class ShopController {
 			//TODO add functionality
 		} catch (ShopNotFoundException e) {
 			res.setStatus(HttpServletResponse.SC_NOT_FOUND);
-			log.error("ShopNotFoundException was thrown, no shop was found");
+			log.error("No shop was found");
 		}catch (CustomerNotFoundException r) {
 			res.setStatus(HttpServletResponse.SC_NO_CONTENT);
-			log.error("CustomerNotFoundException was thrown, customers cart was not found");
-
-			// TODO: handle exception
+			log.error("Customers cart was not found");
 		}
 		finally {
 			shopJSON = this.gson.toJson(shop);
 			out.print(shopJSON);
 		}
 	}
+	/**
+	 * Function finds and returns shop sortiment based on shop id and product id, throws ShopNotFoundException if sortiment was not found
+	 * @param req
+	 * @param res
+	 * @param shopId
+	 * @param productId
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/Shop/Sortiment", produces = "application/json")
 	public void getShopSortiment(HttpServletRequest req, HttpServletResponse res, @RequestParam int shopId, @RequestParam int productId)throws IOException{
+        log.info("Executing getShopWithMostWantedProducts webservice with parameters - shopId = ", shopId, " and productId = ", productId);
+
 		Sortiment sortiment = null;
 		String sortimentJSON = null;
 		PrintWriter out = res.getWriter();
 		res.setCharacterEncoding("UTF-8");
 		try {
 			sortiment = shopDAO.getShopSortiment(shopId, productId);
-		} catch (Exception e) {
+			log.info("Shop sortiment was found");
+
+		} catch (ShopNotFoundException e) {
 			res.setStatus(HttpServletResponse.SC_NO_CONTENT);
-			// TODO: handle exception
+			log.error("Shop sortiment was not found ");
 		}finally {
 			sortimentJSON = this.gson.toJson(sortiment);
 			out.print(sortimentJSON);

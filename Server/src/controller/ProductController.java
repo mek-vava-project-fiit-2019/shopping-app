@@ -1,3 +1,7 @@
+/**
+ * Created by Erik Podola
+ */
+
 package controller;
 
 import java.io.IOException;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.google.gson.Gson;
 
 import database.ProductDAO;
+import exceptions.ProductNotFoundException;
 import model.Product;
 
 @Controller("/Product")
@@ -28,6 +33,13 @@ public class ProductController {
 	private ProductDAO productDAO;
 	private static Logger log = LoggerFactory.getLogger(ProductController.class.getName());
 	
+	/**
+	 * Function that finds and return product based on his QR code, throws ProductNotFoundException if product was not found
+	 * @param request
+	 * @param response
+	 * @param QR
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/Product/QR",produces = "application/json")
 	public void getProductByQR(HttpServletRequest request, HttpServletResponse response, @RequestParam int QR) throws IOException{
         log.info("Executing getProductByQR webservice with parameters: QR = ",QR);
@@ -39,10 +51,9 @@ public class ProductController {
 			product = productDAO.getProductQR(QR);
 			productJSON = this.gson.toJson(product);
 			log.info("Found product with name: " + product.getName());
-		} catch (Exception e) {
+		} catch (ProductNotFoundException e) {
 			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
-			System.out.println("Produkt sa nenasiel");
-			log.info("Did not found product with QR: ",QR);
+			log.error("Did not found product with QR: ",QR);
 
 			}finally {
 			out.print(productJSON);
@@ -50,6 +61,13 @@ public class ProductController {
 		}
 	}
 	
+	/**
+	 * Function that finds and returns product based on his category, throws ProductNotFoundException if product was not found
+	 * @param request
+	 * @param response
+	 * @param category
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/Product/Category", produces = "application/json")
 	public void getProductByCategory(HttpServletRequest request, HttpServletResponse response, @RequestParam String category) throws IOException{
         log.info("Executing getProductByCategory webservice with parameters - category: " + category);
@@ -62,10 +80,10 @@ public class ProductController {
 			productJSON = this.gson.toJson(product);
 			log.info("Found products in category: " + category);
 			System.out.println("Found products: " + product);
-		} catch (Exception e) {
+		} catch (ProductNotFoundException e) {
 			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 			System.out.println("Ziaden produkt sa nenasiel v kategorii " + category);
-			log.info("Didn't found products in category: " + category);
+			log.error("Didn't found products in category: " + category);
 
 			}finally {
 			out.print(productJSON);
