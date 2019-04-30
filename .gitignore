@@ -65,7 +65,6 @@ fastlane/test_output
 fastlane/readme.md
 
 *target*
-*.jar
 *.war
 *.ear
 *.class
