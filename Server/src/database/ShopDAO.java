@@ -50,21 +50,21 @@ private CustomerDAO customerDAO;
 		
 		if(shopList.size() > 0) {
 			
-			double minimum = Double.MAX_VALUE;
-			int shop_index = -1;
-			double distance;
+			double closestShopDistance = Double.MAX_VALUE;
+			double currentShopDistance;
+			int closestShopIndex = -1;
 			
-			for(Shop shop : shopList) {
-				distance = Math.sqrt((((shop.getLatitude().subtract(userLatitude)).pow(2)).add((shop.getLongitude().subtract(userLongitude)).pow(2))).doubleValue());
-				System.out.println("Shop id - " + shop.getId() + " ma distance - " + distance);
+			for(Shop currentShop : shopList) {
+				currentShopDistance = Math.sqrt((((currentShop.getLatitude().subtract(userLatitude)).pow(2)).add((currentShop.getLongitude().subtract(userLongitude)).pow(2))).doubleValue());
+				System.out.println("Shop id - " + currentShop.getId() + " ma distance - " + currentShopDistance);
 				
-				if(distance < minimum) {
-					shop_index = shopList.indexOf(shop);
-					minimum = distance;
+				if(currentShopDistance < closestShopDistance) {
+					closestShopIndex = shopList.indexOf(currentShop);
+					closestShopDistance = currentShopDistance;
 				}
 			}
 			
-			return shopList.get(shop_index);
+			return shopList.get(closestShopIndex);
 		} else {
 			throw new ShopNotFoundException();
 		}
@@ -91,16 +91,16 @@ private CustomerDAO customerDAO;
 	
 	/**
 	 * Find and return sortiment of the shop depending on requeste shop and product, throws exception if sortiment
-	 * @param shop_id
-	 * @param product_id
+	 * @param shopId
+	 * @param productId
 	 * @return sortiment
 	 * @throws ShopNotFoundException
 	 */
 	@SuppressWarnings("unchecked")
-	public Sortiment getShopSortiment(int shop_id, int product_id) throws ShopNotFoundException{
+	public Sortiment getShopSortiment(int shopId, int productId) throws ShopNotFoundException{
 		Session session = this.sessionFactory.openSession();
 
-		Sortiment sortiment = session.createQuery("SELECT sort FROM Sortiment sort WHERE sort.shop.id =" + shop_id + " AND sort.product.id =" + product_id,  Sortiment.class).stream().findFirst().orElse(null);
+		Sortiment sortiment = session.createQuery("SELECT sort FROM Sortiment sort WHERE sort.shop.id =" + shopId + " AND sort.product.id =" + productId,  Sortiment.class).stream().findFirst().orElse(null);
 		session.close();
 		
 		if(sortiment != null) {
@@ -112,33 +112,33 @@ private CustomerDAO customerDAO;
 	
 	/**
 	 * Find and return shop, which has the most of the products customer want to buy, throws exception if none of the shops satisfies the condition
-	 * @param user_id
+	 * @param userId
 	 * @return filteredShop
 	 * @throws ShopNotFoundException
 	 * @throws CustomerNotFoundException
 	 */
 	@SuppressWarnings("unchecked")
-	public Shop getSuitableShop(int user_id) throws ShopNotFoundException, CustomerNotFoundException{
+	public Shop getSuitableShop(int userId) throws ShopNotFoundException, CustomerNotFoundException{
 		Session session = this.sessionFactory.openSession();
 		
-		List<CartItem> userCartItems = customerDAO.getCustomerCartItems(user_id);
+		List<CartItem> userCartItems = customerDAO.getCustomerCartItems(userId);
 		
-		StringBuilder cartItems_id = new StringBuilder();
-		cartItems_id.append("(");
+		StringBuilder requestedProductIDs = new StringBuilder();
+		requestedProductIDs.append("(");
 		
-		for(CartItem crt : userCartItems) {
-			cartItems_id.append(crt.getProduct().getId());
-			if(userCartItems.indexOf(crt) < userCartItems.size() - 1) {
-				cartItems_id.append(",");
+		for(CartItem cartItem : userCartItems) {
+			requestedProductIDs.append(cartItem.getProduct().getId());
+			if(userCartItems.indexOf(cartItem) < userCartItems.size() - 1) {
+				requestedProductIDs.append(",");
 			}
 		}
-		cartItems_id.append(")");
-		System.out.println(cartItems_id.toString());
+		requestedProductIDs.append(")");
+		System.out.println(requestedProductIDs.toString());
 		
-		Integer bestShop_id = session.createQuery("SELECT sort.shop.id FROM Sortiment sort WHERE sort.product.id IN " 
-		+ cartItems_id.toString() + " GROUP BY sort.shop.id ORDER BY (COUNT(sort.shop.id)) desc", Integer.class).stream().findFirst().orElse(null);
+		Integer bestShopId = session.createQuery("SELECT sort.shop.id FROM Sortiment sort WHERE sort.product.id IN " 
+		+ requestedProductIDs.toString() + " GROUP BY sort.shop.id ORDER BY (COUNT(sort.shop.id)) desc", Integer.class).stream().findFirst().orElse(null);
 		
-		Shop filteredShop = session.createQuery("SELECT filteredSort.shop FROM Sortiment filteredSort WHERE filteredSort.shop.id =" + bestShop_id, Shop.class).stream().findFirst().orElse(null);
+		Shop filteredShop = session.createQuery("SELECT filteredSort.shop FROM Sortiment filteredSort WHERE filteredSort.shop.id =" + bestShopId, Shop.class).stream().findFirst().orElse(null);
 		
 		if(filteredShop != null) {
 			return filteredShop;

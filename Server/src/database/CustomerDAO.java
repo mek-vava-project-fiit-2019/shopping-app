@@ -49,15 +49,15 @@ public class CustomerDAO {
 	
 	/**
 	 * Find all cart items related to requested user
-	 * @param user_id
+	 * @param userId
 	 * @return cartItems
 	 * @throws CustomerNotFoundException
 	 */
 	@SuppressWarnings("unchecked")
-	public List<CartItem> getCustomerCartItems(int user_id) throws CustomerNotFoundException {
+	public List<CartItem> getCustomerCartItems(int userId) throws CustomerNotFoundException {
 		Session session = this.sessionFactory.openSession();
 
-		List<CartItem> cartItems = session.createQuery("SELECT cart FROM CartItem cart WHERE cart.user.id = " + user_id,  CartItem.class).list();
+		List<CartItem> cartItems = session.createQuery("SELECT cart FROM CartItem cart WHERE cart.user.id = " + userId,  CartItem.class).list();
 		session.close();
 		
 		if(cartItems.size() > 0) {
