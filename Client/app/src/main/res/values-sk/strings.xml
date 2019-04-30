@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Nakupovacia App</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="map">Map</string>
+    <string name="products">Products</string>
+    <string name="shopping_cart">nakupny kosik</string>
+    <string name="settings">nastavenie</string>
+    <string name="tools">Nastroje</string>
+    <string name="scan_qr">Scan QR</string>
+    <string name="username">meno</string>
+    <string name="mail">username@gmail.com</string>
+    <string name="food">Food</string>
+    <string name="clothing">Clothing</string>
+    <string name="electronics">elektronika</string>
+    <string name="add_to_basket">Add To Basket</string>
+    <string name="sk_language">Slovak</string>
+    <string name="en_language">English</string>
+    <string name="de_language">German</string>
+    <string name="logout">Log Out</string>
+</resources>
