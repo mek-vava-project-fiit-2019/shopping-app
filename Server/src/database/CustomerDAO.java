@@ -1,3 +1,7 @@
+/**
+ * Created by Marko Ondrejicka
+ */
+
 package database;
 
 import java.util.List;
@@ -14,10 +18,21 @@ public class CustomerDAO {
 
 	private SessionFactory sessionFactory;
 	
+	/**
+	 * Set the SessionFactory Bean 
+	 * @param sessionFactory
+	 */
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 	
+	/**
+	 * Find Customer in database based on entered email and password, throws exception if customer does not exist
+	 * @param email
+	 * @param password
+	 * @return customer
+	 * @throws CustomerNotFoundException
+	 */
 	@SuppressWarnings("unchecked")
 	public Customer getCustomer(String email, String password) throws CustomerNotFoundException {
 		Session session = this.sessionFactory.openSession();
@@ -32,11 +47,17 @@ public class CustomerDAO {
 		}
 	}
 	
+	/**
+	 * Find all cart items related to requested user
+	 * @param userId
+	 * @return cartItems
+	 * @throws CustomerNotFoundException
+	 */
 	@SuppressWarnings("unchecked")
-	public List<CartItem> getCustomerCartItems(int user_id) throws CustomerNotFoundException {
+	public List<CartItem> getCustomerCartItems(int userId) throws CustomerNotFoundException {
 		Session session = this.sessionFactory.openSession();
 
-		List<CartItem> cartItems = session.createQuery("SELECT cart FROM CartItem cart WHERE cart.user.id = " + user_id,  CartItem.class).list();
+		List<CartItem> cartItems = session.createQuery("SELECT cart FROM CartItem cart WHERE cart.user.id = " + userId,  CartItem.class).list();
 		session.close();
 		
 		if(cartItems.size() > 0) {
@@ -46,6 +67,10 @@ public class CustomerDAO {
 		}
 	}
 	
+	/**
+	 * Insert new cart item into database
+	 * @param cartItemNew
+	 */
 	@SuppressWarnings("unchecked")
 	public void saveCartItem(CartItem cartItemNew) {
 		Session session = this.sessionFactory.openSession();
