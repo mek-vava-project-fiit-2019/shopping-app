@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name="sk.mek.shoppingapp.ui.login.LoginActivity"
             android:label="@string/title_activity_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,10 +33,10 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name="sk.mek.shoppingapp.MainActivity">
 
         </activity>
-        <activity android:name=".QRCameraActivity"></activity>
+        <activity android:name="sk.mek.shoppingapp.QRCameraActivity"></activity>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

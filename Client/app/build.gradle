@@ -9,13 +9,50 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'int', 'CONFIG_READ_TIMEOUT', '15000'
+        buildConfigField 'int', 'CONFIG_CONNECTION_TIMEOUT', '15000'
+        buildConfigField 'String', 'CONFIG_CATEGORY_FOOD', '"food"'
+        buildConfigField 'String', 'CONFIG_CATEGORY_CLOTHES', '"clothes"'
+        buildConfigField 'String', 'CONFIG_CATEGORY_ELECTRONICS', '"electronics"'
+        buildConfigField 'String', 'CONFIG_SERVER_PATH', '"http://10.0.2.2:8000"'
+        buildConfigField 'String', 'CONFIG_AUTH_API_PATH', '"Server/Customer/?email={email}&password={password}"'
+        buildConfigField 'String', 'CONFIG_PRODUCT_BY_CATEGORY_API_PATH', '"Server/Product/Category/?category={category}"'
+        buildConfigField 'String', 'CONFIG_CART_BY_USER_ID_API_PATH', '"Server/Customer/Cart/?userId={userId}"'
+        buildConfigField 'String', 'CONFIG_PRODUCT_BY_QR_API_PATH', '"Server/Product/QR/?QR={qr}"'
+        buildConfigField 'String', 'CONFIG_SHOPS_API_PATH', '"Server/Shop"'
+        buildConfigField 'String', 'CONFIG_SHOPS_NEAREST_API_PATH', '"Server/Shop/Near/?longitude={longitude}&latitude={latitude}"'
+        buildConfigField 'String', 'CONFIG_GOOD_BY_SHOP_AND_PRODUCT_API_PATH', '"Server/Shop/Sortiment/?shopId={shopId}&productId={productId}"'
+        buildConfigField 'String', 'CONFIG_CONTENT_TYPE', '"application/json"'
+        buildConfigField 'String', 'CONFIG_PUT_CART_ITEM_API_PATH', '"Server/Customer/UpdateCart"'
+        buildConfigField 'String', 'CONFIG_BEST_SHOP_API_PATH', '"Server/Shop/Suitable/?userId={userId}"'
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField 'int', 'CONFIG_READ_TIMEOUT', '15000'
+            buildConfigField 'int', 'CONFIG_CONNECTION_TIMEOUT', '15000'
+            buildConfigField 'String', 'CONFIG_CATEGORY_FOOD', '"food"'
+            buildConfigField 'String', 'CONFIG_CATEGORY_CLOTHES', '"clothes"'
+            buildConfigField 'String', 'CONFIG_CATEGORY_ELECTRONICS', '"electronics"'
+            buildConfigField 'String', 'CONFIG_SERVER_PATH', '"http://10.0.2.2:8000"'
+            buildConfigField 'String', 'CONFIG_AUTH_API_PATH', '"Server/Customer/?email={email}&password={password}"'
+            buildConfigField 'String', 'CONFIG_PRODUCT_BY_CATEGORY_API_PATH', '"Server/Product/Category/?category={category}"'
+            buildConfigField 'String', 'CONFIG_CART_BY_USER_ID_API_PATH', '"Server/Customer/Cart/?userId={userId}"'
+            buildConfigField 'String', 'CONFIG_PRODUCT_BY_QR_API_PATH', '"Server/Product/QR/?QR={qr}"'
+            buildConfigField 'String', 'CONFIG_SHOPS_API_PATH', 'Server/Shop'
+            buildConfigField 'String', 'CONFIG_SHOPS_NEAREST_API_PATH', '"Server/Shop/Near/?longitude={longitude}&latitude={latitude}"'
+            buildConfigField 'String', 'CONFIG_GOOD_BY_SHOP_AND_PRODUCT_API_PATH', '"Server/Shop/Sortiment/?shopId={shopId}&productId={productId}"'
+            buildConfigField 'String', 'CONFIG_CONTENT_TYPE', '"application/json"'
+
+            buildConfigField 'String', 'CONFIG_PUT_CART_ITEM_API_PATH', '"Server/Customer/UpdateCart"'
+            buildConfigField 'String', 'CONFIG_BEST_SHOP_API_PATH', '"Server/Shop/Suitable/?userId={userId}"'
         }
     }
+
+
 }
 
 dependencies {

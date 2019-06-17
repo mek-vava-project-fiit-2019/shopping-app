@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -81,9 +82,9 @@ public class CustomerController {
 		
 	}
 	
-	@RequestMapping(value = "/Customer/UpdateCart", produces = "application/json", method =RequestMethod.PUT )
-	public void updateCustomerCart(HttpServletRequest request, HttpServletResponse response, CartItem cartItem) {
-		customerDAO.saveCartItem(cartItem);
-		
+	@RequestMapping(value = "/Customer/UpdateCart", produces = "application/json", method = RequestMethod.PUT )
+	public void updateCustomerCart(HttpServletRequest request, HttpServletResponse response, @RequestBody String id, @RequestBody String user_id, @RequestBody String product_id, @RequestBody String amount) {
+		//customerDAO.saveCartItem(cartItem);
+		System.out.println(user_id);
 	}
 }

@@ -1,2 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Einkaufen App</string>
+    <string name="navigation_drawer_open">Navigationsmenü öffnen</string>
+    <string name="navigation_drawer_close">Navigationsmenü schließen</string>
+    <string name="map">Karte</string>
+    <string name="products">Produkte</string>
+    <string name="shopping_cart">Einkaufkorb</string>
+    <string name="settings">Einstellungen</string>
+    <string name="tools">Werkzeuge</string>
+    <string name="scan_qr">Scannen QR</string>
+    <string name="username">username</string>
+    <string name="mail">username@gmail.com</string>
+
+
+    <string name="money">200$</string>
+    <string name="product_were_loaded"> War angelesen!</string>
+    <string name="best_shops_were_loaded"> Beste Läden war angelesen!</string>
+    <string name="http_bad_request">Die Anforderung, die war angelessen von Sie, ist ungültige! 400</string>
+    <string name="http_no_content">Das Einvernehmen war nicht befunden! 204</string>
+    <string name="http_not_found">Server ist unerhältlich! 404</string>
+    <string name="category">Klasse: </string>
+    <string name="qr_not_valid">QR war nicht befunden oder ist ungültige!</string>
+    <string name="product_not_found">Produkt war nicht befunden.</string>
+
+
+    <string name="detector_error">Detektor war nicht eingestellt!</string>
+
+
+    <string name="food">Lebensmittel</string>
+    <string name="clothing">Kleidung</string>
+    <string name="electronics">Elektronik</string>
+    <string name="add_to_basket">Zum Korb hinzufügen</string>
+    <string name="sk_language">Slowakisch</string>
+    <string name="en_language">Englisch</string>
+    <string name="de_language">Deutsch</string>
+    <string name="logout">Ausloggen</string>
+
+
+    <string name="ok">OK</string>
+    <string name="permission_camera_rationale">Die Erlaubnis zur Verwendung der Kamera ist zum Scannen des QR-Codes erforderlich</string>
+    <string name="no_camera_permission">Die App kann nicht ausgeführt werden, da die Kamera nicht berechtigt ist. Die App wird jetzt geschlossen.</string>
+    <string name="low_storage_error">Die für die Gesichtserkennung erforderlichen Funktionen können nicht heruntergeladen werden, da auf dem Gerät nicht genügend Speicherplatz vorhanden ist</string>
+    <string name="title_activity_main">QR Code Reader</string>
+    <string name="barcode_header">Klicken Sie auf &quot;QR-Code lesen&quot; QR-Code lesen</string>
+    <string name="read_barcode">QR-Code lesen</string>
+    <string name="auto_focus">Autofokus</string>
+    <string name="use_flash">Verwenden Sie den Blitz</string>
+    <string name="barcode_failure">Das Lesen des QR-Codes ist fehlgeschlagen</string>
+    <string name="barcode_success">Der QR-Code wurde erfolgreich geladen</string>
+    <string name="barcode_error">"Fehler beim Lesen des QR-Codes: %1$s"</string>
+    <string name="title_activity_login">das Logon</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">das Kennwort</string>
+    <string name="action_sign_in">Logon oder Registration</string>
+    <string name="action_sign_in_short">das Logon</string>
+    <string name="welcome">"Willkommen "</string>
+    <string name="invalid_username">Ungültige Benutzername</string>
+    <string name="invalid_password">Das Kennwort muss grosser als 5 Zeichen sein </string>
+    <string name="login_failed">"Logon hat versagt"</string>
+</resources>

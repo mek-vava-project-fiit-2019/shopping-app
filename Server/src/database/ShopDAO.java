@@ -42,7 +42,7 @@ private CustomerDAO customerDAO;
 	 * @throws ShopNotFoundException
 	 */
 	@SuppressWarnings("unchecked")
-	public Shop getClosestShop(BigDecimal userLatitude, BigDecimal userLongitude) throws ShopNotFoundException{
+	public Shop[] getClosestShop(BigDecimal userLatitude, BigDecimal userLongitude) throws ShopNotFoundException{
 		Session session = this.sessionFactory.openSession();
 
 		List<Shop> shopList = session.createQuery("SELECT shop FROM Shop shop",  Shop.class).list();
@@ -64,7 +64,7 @@ private CustomerDAO customerDAO;
 				}
 			}
 			
-			return shopList.get(closestShopIndex);
+			return new Shop[] {shopList.get(closestShopIndex)};
 		} else {
 			throw new ShopNotFoundException();
 		}

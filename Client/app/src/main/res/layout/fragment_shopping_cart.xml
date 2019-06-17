@@ -46,14 +46,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_shopping_cart" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/saveBasketButton"
-        android:layout_width="60dip"
-        android:layout_height="60dip"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_save" />
 </android.support.constraint.ConstraintLayout>

@@ -1,23 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">Nakupovacia App</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="map">Map</string>
-    <string name="products">Products</string>
-    <string name="shopping_cart">nakupny kosik</string>
-    <string name="settings">nastavenie</string>
+    <string name="app_name">Nakupna Aplikacia</string>
+    <string name="navigation_drawer_open">Otvorit navigacne menu</string>
+    <string name="navigation_drawer_close">Zatvorit navigacne menu</string>
+    <string name="map">Mapa</string>
+    <string name="products">Produkty</string>
+    <string name="shopping_cart">Nakupny kosik</string>
+    <string name="settings">Nastavenia</string>
     <string name="tools">Nastroje</string>
-    <string name="scan_qr">Scan QR</string>
-    <string name="username">meno</string>
+    <string name="scan_qr">Naskenuj QR</string>
+    <string name="username">username</string>
     <string name="mail">username@gmail.com</string>
-    <string name="food">Food</string>
-    <string name="clothing">Clothing</string>
-    <string name="electronics">elektronika</string>
-    <string name="add_to_basket">Add To Basket</string>
-    <string name="sk_language">Slovak</string>
-    <string name="en_language">English</string>
-    <string name="de_language">German</string>
-    <string name="logout">Log Out</string>
+
+
+    <string name="money">200$</string>
+    <string name="product_were_loaded"> Boli nacitane!</string>
+    <string name="best_shops_were_loaded"> Najlepsie obchody boli nacitane!</string>
+    <string name="http_bad_request">Poziadavku, ktoru Ste nacitali je neplatna! 400</string>
+    <string name="http_no_content">Ziadna zhoda nebola najdena! 204</string>
+    <string name="http_not_found">Server je nedostupny! 404</string>
+    <string name="category">Kategoria: </string>
+    <string name="qr_not_valid">QR kod nebol najdeny alebo je neplatny!</string>
+    <string name="product_not_found">Produkt nebol najdeny.</string>
+
+
+    <string name="detector_error">Detektor nebol nastaveny!</string>
+
+
+    <string name="food">Jedlo</string>
+    <string name="clothing">Oblecenie</string>
+    <string name="electronics">Elektronika</string>
+    <string name="add_to_basket">Pridat do kosiku</string>
+    <string name="sk_language">Slovencina</string>
+    <string name="en_language">Anglictina</string>
+    <string name="de_language">Nemcina</string>
+    <string name="logout">Odhlasenie</string>
+
+
+    <string name="ok">OK</string>
+    <string name="permission_camera_rationale">Je potrebne povolenie na pristup ku kamere pre detekciu</string>
+    <string name="no_camera_permission">Aplikacia nemoze spustit, pretoze nema pristup ku kamere.Aplikacia teraz skonci.</string>
+    <string name="low_storage_error">Funckie potrebne pre pouzitie detekcie tvare nemozu byt stiahnute kvoli malemu priestoru v pamati</string>
+    <string name="title_activity_main">Citacka QR kodov</string>
+    <string name="barcode_header">Klikni na &quot;Nacitat QR kod&quot; na nacitanie QR kodu</string>
+    <string name="read_barcode">Nacitat QR kod</string>
+    <string name="auto_focus">Automaticke zaostrovanie</string>
+    <string name="use_flash">Pouzit blesk</string>
+    <string name="barcode_failure">Ziaden barcode nebol zachyteny</string>
+    <string name="barcode_success">QR kod bol uspesne nacitany</string>
+    <string name="barcode_error">"Chyba pri nacitavani QR kodu: %1$s"</string>
+    <string name="title_activity_login">Prihlasenie</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Heslo</string>
+    <string name="action_sign_in">Prihlasenie alebo registracia</string>
+    <string name="action_sign_in_short">Prihlasenie</string>
+    <string name="welcome">"Vitajte "</string>
+    <string name="invalid_username">Neplatne uzivatelske meno</string>
+    <string name="invalid_password">Heslo musi byt vacsie ako 5 znakov</string>
+    <string name="login_failed">"Prihlasovanie zlyhalo"</string>
 </resources>

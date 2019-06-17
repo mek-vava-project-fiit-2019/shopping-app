@@ -28,7 +28,6 @@ import exceptions.ShopNotFoundException;
 import model.Product;
 import model.Shop;
 import model.Sortiment;
-import sun.text.normalizer.UTF16;
 
 @Controller
 public class ShopController {
@@ -38,16 +37,16 @@ public class ShopController {
 	private Gson gson = new Gson();
 	private static Logger log = LoggerFactory.getLogger(ProductController.class.getName());
 
-	@RequestMapping(value = "/Shop/Closest", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/Shop/Near", method = RequestMethod.GET, produces = "application/json")
 	public void getClossestShopBassedOnCoordinates(@RequestParam BigDecimal longitude,@RequestParam BigDecimal latitude, HttpServletRequest req, HttpServletResponse res)throws IOException {
         log.info("Executing getClossestShopBassedOnCoordinates webservice with parameters - latitude = ",latitude, ", longitude = ", longitude);
-		Shop shop = null;
+		Shop[] shop = null;
 		String shopJSON = null;
 		PrintWriter out = res.getWriter();
 		res.setCharacterEncoding("UTF-8");	
 		try {
 			shop = shopDAO.getClosestShop(longitude, latitude);
-			log.info("Found closest shop with name " + shop.getName());	
+			log.info("Found closest shop with name " + shop[0].getName());	
 		} catch (ShopNotFoundException e) {
 			res.setStatus(HttpServletResponse.SC_NO_CONTENT);
 			log.error("ShopNotFoundException was thrown, did not found any shop");	
